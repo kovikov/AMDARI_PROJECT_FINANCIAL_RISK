@@ -1,0 +1,82 @@
+{
+  "feature_0": {
+    "train_mean": 0.8163619985045242,
+    "train_std": 1.5719970438361348,
+    "test_mean": 0.6478750764427584,
+    "test_std": 1.5279160901674211,
+    "train_missing": 0.0,
+    "test_missing": 0.0
+  },
+  "feature_1": {
+    "train_mean": -0.7873693625658018,
+    "train_std": 1.6485922164671132,
+    "test_mean": -0.626762955279317,
+    "test_std": 1.5978809808974201,
+    "train_missing": 0.0,
+    "test_missing": 0.0
+  },
+  "feature_2": {
+    "train_mean": -0.5043314109119061,
+    "train_std": 2.1753484272096633,
+    "test_mean": -0.4347473925614905,
+    "test_std": 2.1980127424518128,
+    "train_missing": 0.0,
+    "test_missing": 0.0
+  },
+  "feature_3": {
+    "train_mean": -0.784272100928585,
+    "train_std": 1.8683569159148326,
+    "test_mean": -0.8555949935871374,
+    "test_std": 1.766494742675862,
+    "train_missing": 0.0,
+    "test_missing": 0.0
+  },
+  "feature_4": {
+    "train_mean": 0.5777579775608236,
+    "train_std": 2.8517879912767965,
+    "test_mean": 0.3671133234229464,
+    "test_std": 2.8422897035389028,
+    "train_missing": 0.0,
+    "test_missing": 0.0
+  },
+  "feature_5": {
+    "train_mean": 0.7172584882411482,
+    "train_std": 1.7981237063431361,
+    "test_mean": 0.863873773288286,
+    "test_std": 1.672596309314858,
+    "train_missing": 0.0,
+    "test_missing": 0.0
+  },
+  "feature_6": {
+    "train_mean": -0.8896490846304559,
+    "train_std": 1.5627669362885113,
+    "test_mean": -0.8118863535933284,
+    "test_std": 1.6393012592227678,
+    "train_missing": 0.0,
+    "test_missing": 0.0
+  },
+  "feature_7": {
+    "train_mean": -0.9783927143011186,
+    "train_std": 1.190897536532506,
+    "test_mean": -0.9637699450301622,
+    "test_std": 1.2866716277841255,
+    "train_missing": 0.0,
+    "test_missing": 0.0
+  },
+  "feature_8": {
+    "train_mean": 0.9679439425094195,
+    "train_std": 1.5061467363439776,
+    "test_mean": 1.0294639034602016,
+    "test_std": 1.4748806366916856,
+    "train_missing": 0.0,
+    "test_missing": 0.0
+  },
+  "feature_9": {
+    "train_mean": 0.936906315967696,
+    "train_std": 1.7722364033984577,
+    "test_mean": 0.7841546230763129,
+    "test_std": 1.9721038396608508,
+    "train_missing": 0.0,
+    "test_missing": 0.0
+  }
+}

@@ -1,0 +1,22 @@
+artifact_path: file:C:/Users/renef/OneDrive/Desktop/AMDARI_FINANCE_PROJECT/finrisk/mlruns/1/models/m-6f28466a52c6455b8f7eba79793eb26b/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.6
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.0
+mlflow_version: 3.2.0
+model_id: m-6f28466a52c6455b8f7eba79793eb26b
+model_size_bytes: 1496097
+model_uuid: m-6f28466a52c6455b8f7eba79793eb26b
+prompts: null
+run_id: a401147d892149b7a4ac074397f494ba
+utc_time_created: '2025-08-13 19:58:05.510486'

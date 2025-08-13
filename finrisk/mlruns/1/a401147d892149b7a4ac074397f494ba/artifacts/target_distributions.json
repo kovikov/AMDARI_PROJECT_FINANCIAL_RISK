@@ -1,0 +1,10 @@
+{
+  "train_target_distribution": {
+    "1": 406,
+    "0": 394
+  },
+  "test_target_distribution": {
+    "0": 106,
+    "1": 94
+  }
+}

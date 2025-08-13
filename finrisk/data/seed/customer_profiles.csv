@@ -1,0 +1,101 @@
+customer_id,first_name,last_name,email,phone,date_of_birth,address,city,state,zip_code,country,employment_status,annual_income,credit_score
+CUST_0001,Robert,Brown,robert.brown@example.com,+1-658-187-9322,1979-11-08,1785 Maple St,Chicago,FL,47194,USA,SELF_EMPLOYED,20828.13,731
+CUST_0002,Lisa,Garcia,lisa.garcia@example.com,+1-710-781-3047,2006-12-21,2847 Pine St,Dallas,NY,35658,USA,RETIRED,75447.25,850
+CUST_0003,Robert,Brown,robert.brown@example.com,+1-800-415-9433,1951-03-05,7613 Maple St,San Antonio,CA,20627,USA,SELF_EMPLOYED,20424.76,737
+CUST_0004,Sarah,Miller,sarah.miller@example.com,+1-201-489-4843,1964-08-15,8089 Maple St,Los Angeles,OH,99475,USA,SELF_EMPLOYED,29934.4,584
+CUST_0005,Mary,Johnson,mary.johnson@example.com,+1-495-824-7863,1998-04-14,8016 Oak St,San Antonio,GA,99789,USA,STUDENT,23072.73,818
+CUST_0006,Lisa,Martinez,lisa.martinez@example.com,+1-720-443-3027,1983-12-28,2795 Pine St,New York,GA,50774,USA,UNEMPLOYED,20634.59,713
+CUST_0007,John,Davis,john.davis@example.com,+1-334-300-4104,1973-03-01,7315 Maple St,San Jose,GA,62251,USA,UNEMPLOYED,51493.98,717
+CUST_0008,Lisa,Garcia,lisa.garcia@example.com,+1-417-602-7910,1981-03-01,9162 Pine St,Chicago,NY,92948,USA,EMPLOYED,42762.75,691
+CUST_0009,Mary,Martinez,mary.martinez@example.com,+1-948-754-4242,1948-03-07,4736 Elm St,Houston,AZ,81910,USA,STUDENT,135505.04,597
+CUST_0010,Robert,Williams,robert.williams@example.com,+1-539-897-6450,1986-12-02,1763 Oak St,Phoenix,PA,79163,USA,RETIRED,20000.0,789
+CUST_0011,James,Miller,james.miller@example.com,+1-558-809-6575,1946-01-01,5630 Main St,Houston,GA,19474,USA,STUDENT,29850.17,553
+CUST_0012,John,Williams,john.williams@example.com,+1-696-541-2291,1966-12-24,3681 Oak St,San Diego,GA,64384,USA,UNEMPLOYED,33501.89,740
+CUST_0013,John,Jones,john.jones@example.com,+1-329-152-2707,1959-08-17,5891 Elm St,New York,NY,56717,USA,UNEMPLOYED,29118.15,691
+CUST_0014,Lisa,Smith,lisa.smith@example.com,+1-386-425-3511,1945-06-24,759 Elm St,Philadelphia,NY,52107,USA,UNEMPLOYED,43394.15,697
+CUST_0015,Sarah,Williams,sarah.williams@example.com,+1-839-650-3385,1982-03-19,4836 Pine St,Dallas,NY,93879,USA,RETIRED,25332.69,673
+CUST_0016,James,Rodriguez,james.rodriguez@example.com,+1-771-980-3049,1958-07-10,5523 Elm St,San Jose,GA,26371,USA,STUDENT,54543.76,576
+CUST_0017,David,Miller,david.miller@example.com,+1-827-686-2648,1999-09-03,5639 Elm St,Houston,OH,69040,USA,UNEMPLOYED,54615.68,747
+CUST_0018,James,Williams,james.williams@example.com,+1-597-376-5911,1983-02-14,4087 Pine St,Dallas,TX,48467,USA,EMPLOYED,92308.11,747
+CUST_0019,John,Williams,john.williams@example.com,+1-808-383-8022,1986-07-22,9251 Main St,Los Angeles,AZ,64045,USA,STUDENT,56349.96,676
+CUST_0020,Michael,Brown,michael.brown@example.com,+1-944-136-3327,1973-01-17,3520 Main St,Phoenix,PA,57202,USA,STUDENT,36105.78,719
+CUST_0021,Michael,Smith,michael.smith@example.com,+1-934-665-1569,1956-05-23,5542 Oak St,Los Angeles,GA,42745,USA,SELF_EMPLOYED,34351.4,525
+CUST_0022,Mary,Johnson,mary.johnson@example.com,+1-737-966-2841,1982-01-08,8816 Elm St,San Antonio,NC,29190,USA,SELF_EMPLOYED,62412.8,805
+CUST_0023,Robert,Rodriguez,robert.rodriguez@example.com,+1-553-933-6919,1972-04-01,953 Pine St,Chicago,FL,23403,USA,EMPLOYED,33434.55,631
+CUST_0024,Mary,Garcia,mary.garcia@example.com,+1-252-671-4051,1950-10-22,104 Elm St,Phoenix,NY,90135,USA,STUDENT,43356.41,511
+CUST_0025,Sarah,Williams,sarah.williams@example.com,+1-940-573-9308,1953-08-20,6049 Main St,San Jose,FL,35945,USA,RETIRED,20000.0,500
+CUST_0026,David,Smith,david.smith@example.com,+1-436-984-4343,1950-10-01,4170 Maple St,Philadelphia,GA,55543,USA,STUDENT,20000.0,665
+CUST_0027,Robert,Williams,robert.williams@example.com,+1-403-317-7617,1996-10-16,2579 Maple St,New York,TX,39124,USA,RETIRED,25848.24,673
+CUST_0028,John,Jones,john.jones@example.com,+1-715-115-3839,1985-10-10,8627 Oak St,San Diego,AZ,26364,USA,EMPLOYED,36348.45,775
+CUST_0029,Sarah,Davis,sarah.davis@example.com,+1-367-941-2066,1996-02-03,7823 Maple St,Chicago,AZ,48304,USA,STUDENT,26700.38,850
+CUST_0030,Jane,Williams,jane.williams@example.com,+1-617-214-9808,1958-03-23,4074 Elm St,San Jose,NC,85353,USA,SELF_EMPLOYED,32726.45,650
+CUST_0031,David,Johnson,david.johnson@example.com,+1-656-291-3786,1963-11-24,1222 Elm St,Dallas,TX,54425,USA,SELF_EMPLOYED,54525.9,762
+CUST_0032,John,Miller,john.miller@example.com,+1-997-372-9787,1976-08-23,828 Maple St,Dallas,IL,31352,USA,UNEMPLOYED,78938.94,656
+CUST_0033,Michael,Smith,michael.smith@example.com,+1-566-243-5980,1972-12-09,7366 Elm St,Houston,IL,70921,USA,EMPLOYED,29565.24,798
+CUST_0034,Sarah,Jones,sarah.jones@example.com,+1-597-322-5729,1972-05-23,9448 Pine St,Phoenix,NC,31689,USA,STUDENT,30598.48,724
+CUST_0035,Jane,Rodriguez,jane.rodriguez@example.com,+1-994-733-2540,1998-10-12,6272 Maple St,San Diego,NC,72856,USA,UNEMPLOYED,37338.72,706
+CUST_0036,Lisa,Smith,lisa.smith@example.com,+1-290-813-6977,1986-04-17,4368 Maple St,Chicago,PA,36790,USA,SELF_EMPLOYED,26052.95,836
+CUST_0037,Mary,Brown,mary.brown@example.com,+1-316-233-3105,1980-08-09,3727 Maple St,Dallas,NY,33960,USA,STUDENT,55275.53,813
+CUST_0038,David,Garcia,david.garcia@example.com,+1-432-404-6645,1987-11-28,3586 Main St,Houston,GA,81726,USA,STUDENT,38133.1,622
+CUST_0039,Emily,Garcia,emily.garcia@example.com,+1-321-447-7819,2005-07-25,3819 Oak St,San Diego,AZ,39703,USA,RETIRED,33804.81,639
+CUST_0040,Jane,Jones,jane.jones@example.com,+1-660-831-1924,1967-04-27,1681 Pine St,New York,AZ,67043,USA,STUDENT,43082.75,850
+CUST_0041,Emily,Johnson,emily.johnson@example.com,+1-573-164-3193,1957-05-15,8515 Main St,Phoenix,FL,11015,USA,UNEMPLOYED,38988.62,803
+CUST_0042,David,Martinez,david.martinez@example.com,+1-298-610-1384,1945-09-22,504 Elm St,New York,CA,85880,USA,EMPLOYED,41329.57,823
+CUST_0043,David,Jones,david.jones@example.com,+1-344-184-8245,1970-03-21,6700 Main St,San Jose,NC,63330,USA,UNEMPLOYED,80665.92,760
+CUST_0044,Sarah,Smith,sarah.smith@example.com,+1-637-217-1770,1959-08-02,4463 Main St,San Jose,NC,68017,USA,RETIRED,24005.87,669
+CUST_0045,David,Rodriguez,david.rodriguez@example.com,+1-903-863-7881,1991-07-15,7049 Oak St,Chicago,FL,91317,USA,SELF_EMPLOYED,48867.66,821
+CUST_0046,Jane,Williams,jane.williams@example.com,+1-332-896-8043,1945-02-20,237 Main St,San Antonio,NC,53088,USA,SELF_EMPLOYED,20000.0,850
+CUST_0047,John,Brown,john.brown@example.com,+1-382-947-7238,1984-05-02,6190 Elm St,Chicago,GA,34214,USA,RETIRED,20000.0,820
+CUST_0048,Lisa,Rodriguez,lisa.rodriguez@example.com,+1-988-104-6585,2005-03-27,4877 Maple St,San Jose,IL,33954,USA,STUDENT,22184.23,750
+CUST_0049,Emily,Smith,emily.smith@example.com,+1-448-146-6240,2003-09-12,6593 Pine St,San Jose,GA,33321,USA,STUDENT,27533.96,580
+CUST_0050,John,Martinez,john.martinez@example.com,+1-673-127-9150,1972-01-08,2225 Oak St,San Diego,PA,18717,USA,STUDENT,25129.4,757
+CUST_0051,Mary,Davis,mary.davis@example.com,+1-938-982-4086,1957-07-03,8252 Maple St,Los Angeles,NC,98869,USA,RETIRED,36838.92,796
+CUST_0052,Mary,Miller,mary.miller@example.com,+1-411-124-8561,1951-01-07,8358 Main St,Dallas,NY,13596,USA,STUDENT,37708.2,612
+CUST_0053,Jane,Brown,jane.brown@example.com,+1-717-791-6401,1961-06-02,1861 Pine St,Chicago,NC,70004,USA,UNEMPLOYED,102974.7,839
+CUST_0054,Emily,Jones,emily.jones@example.com,+1-442-642-2063,1951-01-21,4424 Elm St,San Diego,FL,23046,USA,SELF_EMPLOYED,26230.52,651
+CUST_0055,Sarah,Brown,sarah.brown@example.com,+1-914-491-7316,1993-06-22,6569 Oak St,Chicago,GA,63441,USA,RETIRED,25285.82,646
+CUST_0056,Michael,Brown,michael.brown@example.com,+1-338-610-7988,1975-04-17,2126 Pine St,Philadelphia,AZ,11917,USA,EMPLOYED,91444.74,726
+CUST_0057,Emily,Johnson,emily.johnson@example.com,+1-976-649-4490,1952-10-05,9410 Main St,New York,AZ,29216,USA,STUDENT,60062.83,642
+CUST_0058,Jane,Jones,jane.jones@example.com,+1-771-931-6468,1952-11-09,8107 Pine St,New York,OH,46159,USA,EMPLOYED,28163.92,575
+CUST_0059,David,Williams,david.williams@example.com,+1-241-188-7943,1987-05-05,7904 Main St,Houston,GA,24060,USA,EMPLOYED,50347.28,570
+CUST_0060,James,Smith,james.smith@example.com,+1-397-745-2202,1975-07-02,8235 Oak St,Chicago,FL,77506,USA,RETIRED,56738.34,709
+CUST_0061,John,Brown,john.brown@example.com,+1-488-353-3243,1978-07-27,2745 Oak St,New York,AZ,42154,USA,SELF_EMPLOYED,28461.36,740
+CUST_0062,David,Martinez,david.martinez@example.com,+1-214-256-4719,1975-06-06,2471 Elm St,San Diego,TX,50631,USA,STUDENT,20000.0,767
+CUST_0063,Jane,Williams,jane.williams@example.com,+1-333-811-7166,1957-04-04,914 Oak St,Houston,NC,86325,USA,UNEMPLOYED,52002.61,850
+CUST_0064,Mary,Davis,mary.davis@example.com,+1-326-205-9795,1946-02-25,6124 Pine St,Houston,TX,74644,USA,STUDENT,56045.8,606
+CUST_0065,Lisa,Rodriguez,lisa.rodriguez@example.com,+1-200-930-5021,1986-11-23,4762 Pine St,San Jose,TX,29256,USA,STUDENT,30802.87,652
+CUST_0066,James,Jones,james.jones@example.com,+1-801-174-8973,1999-10-20,8677 Oak St,Chicago,TX,59688,USA,UNEMPLOYED,46058.12,831
+CUST_0067,Jane,Smith,jane.smith@example.com,+1-909-600-6975,1965-11-12,6420 Maple St,Dallas,FL,80835,USA,UNEMPLOYED,33009.29,731
+CUST_0068,Emily,Martinez,emily.martinez@example.com,+1-541-575-6182,1980-02-21,6804 Main St,Dallas,NY,62853,USA,STUDENT,45374.22,701
+CUST_0069,Robert,Williams,robert.williams@example.com,+1-217-868-6490,1949-08-19,6745 Elm St,New York,OH,99106,USA,EMPLOYED,29027.14,487
+CUST_0070,Jane,Garcia,jane.garcia@example.com,+1-361-479-1054,1957-04-01,7743 Oak St,Chicago,NC,85629,USA,STUDENT,27340.94,677
+CUST_0071,Lisa,Smith,lisa.smith@example.com,+1-438-328-7722,1951-07-03,7318 Main St,San Diego,PA,41480,USA,RETIRED,52095.61,587
+CUST_0072,Lisa,Johnson,lisa.johnson@example.com,+1-934-922-1943,1973-08-14,6250 Oak St,Houston,TX,96925,USA,EMPLOYED,67839.69,742
+CUST_0073,Robert,Jones,robert.jones@example.com,+1-722-845-2409,1989-03-04,4666 Elm St,New York,AZ,97955,USA,RETIRED,71947.01,795
+CUST_0074,David,Jones,david.jones@example.com,+1-479-692-3679,1970-09-02,2206 Main St,San Jose,PA,27771,USA,SELF_EMPLOYED,30227.68,747
+CUST_0075,Michael,Smith,michael.smith@example.com,+1-434-593-3051,1994-09-08,6909 Oak St,Dallas,PA,27685,USA,STUDENT,24412.45,850
+CUST_0076,Jane,Miller,jane.miller@example.com,+1-798-728-9041,1971-11-06,441 Maple St,New York,AZ,88411,USA,UNEMPLOYED,20000.0,755
+CUST_0077,James,Garcia,james.garcia@example.com,+1-600-575-3681,1981-08-02,3729 Oak St,San Antonio,NC,69052,USA,RETIRED,83511.3,801
+CUST_0078,Emily,Smith,emily.smith@example.com,+1-943-326-2333,1957-05-04,4250 Maple St,Houston,NY,34762,USA,EMPLOYED,32451.34,820
+CUST_0079,Mary,Brown,mary.brown@example.com,+1-649-600-3120,1961-04-19,2443 Main St,Los Angeles,GA,42921,USA,EMPLOYED,27232.9,712
+CUST_0080,James,Davis,james.davis@example.com,+1-768-922-8982,1966-09-07,4207 Pine St,New York,NY,59481,USA,STUDENT,59448.24,640
+CUST_0081,John,Miller,john.miller@example.com,+1-977-115-5806,1971-06-16,8692 Oak St,Dallas,NC,37935,USA,STUDENT,28944.28,763
+CUST_0082,Emily,Martinez,emily.martinez@example.com,+1-422-471-4042,2001-05-07,4597 Pine St,Los Angeles,FL,16737,USA,SELF_EMPLOYED,45402.38,678
+CUST_0083,Robert,Smith,robert.smith@example.com,+1-382-463-9230,1994-08-03,7794 Main St,Chicago,AZ,12983,USA,RETIRED,23673.53,850
+CUST_0084,Emily,Rodriguez,emily.rodriguez@example.com,+1-745-513-5346,1995-02-01,3910 Pine St,Los Angeles,FL,62393,USA,RETIRED,41503.17,788
+CUST_0085,John,Jones,john.jones@example.com,+1-776-788-3050,1964-09-16,1265 Oak St,San Antonio,TX,22676,USA,RETIRED,29063.8,845
+CUST_0086,Jane,Jones,jane.jones@example.com,+1-339-286-2828,1983-01-21,9230 Elm St,New York,GA,99431,USA,UNEMPLOYED,35691.13,723
+CUST_0087,Jane,Rodriguez,jane.rodriguez@example.com,+1-952-605-7402,2001-04-04,3945 Maple St,San Jose,CA,92856,USA,STUDENT,65091.64,850
+CUST_0088,Emily,Miller,emily.miller@example.com,+1-261-244-9194,1959-09-03,8006 Maple St,San Jose,IL,35425,USA,STUDENT,49797.65,850
+CUST_0089,James,Rodriguez,james.rodriguez@example.com,+1-531-269-1954,2004-05-02,9275 Elm St,Dallas,IL,98801,USA,UNEMPLOYED,20000.0,612
+CUST_0090,David,Martinez,david.martinez@example.com,+1-423-417-3396,1990-06-05,2262 Oak St,Phoenix,NY,19516,USA,UNEMPLOYED,51399.34,593
+CUST_0091,Lisa,Davis,lisa.davis@example.com,+1-291-452-2704,1974-08-27,7024 Pine St,San Diego,IL,29623,USA,STUDENT,44565.12,763
+CUST_0092,James,Jones,james.jones@example.com,+1-230-634-8561,1966-04-27,2819 Pine St,San Jose,GA,59138,USA,STUDENT,26249.56,748
+CUST_0093,Robert,Johnson,robert.johnson@example.com,+1-559-322-8009,1972-02-14,4643 Maple St,Los Angeles,NY,44832,USA,UNEMPLOYED,24212.2,786
+CUST_0094,Emily,Williams,emily.williams@example.com,+1-683-341-8491,1978-07-10,1140 Elm St,Phoenix,PA,23507,USA,EMPLOYED,65722.31,676
+CUST_0095,Mary,Garcia,mary.garcia@example.com,+1-232-745-4356,2007-06-26,8807 Main St,Houston,FL,67372,USA,UNEMPLOYED,99727.92,626
+CUST_0096,James,Miller,james.miller@example.com,+1-947-539-1988,1993-07-11,4216 Maple St,Chicago,NY,54413,USA,UNEMPLOYED,63635.49,831
+CUST_0097,Sarah,Garcia,sarah.garcia@example.com,+1-362-931-4056,1989-09-05,9084 Elm St,Philadelphia,CA,11980,USA,SELF_EMPLOYED,35497.13,724
+CUST_0098,Lisa,Rodriguez,lisa.rodriguez@example.com,+1-892-635-5473,1991-05-08,3046 Elm St,Houston,FL,71788,USA,EMPLOYED,48285.36,744
+CUST_0099,Robert,Smith,robert.smith@example.com,+1-700-216-3433,1946-12-20,5563 Pine St,Dallas,PA,15109,USA,STUDENT,20000.0,668
+CUST_0100,John,Davis,john.davis@example.com,+1-301-524-1778,1987-02-18,313 Pine St,Dallas,NY,61195,USA,EMPLOYED,125008.84,650
