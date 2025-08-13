@@ -1,0 +1,127 @@
+name: CD - Continuous Deployment
+
+on:
+  push:
+    branches: [ main ]
+  workflow_run:
+    workflows: ["CI - Continuous Integration"]
+    types:
+      - completed
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    environment: staging
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        pip install -r finrisk/requirements.txt
+
+    - name: Deploy to staging
+      run: |
+        echo "Deploying to staging environment..."
+        # Add your staging deployment commands here
+        # Example: kubectl apply -f k8s/staging/
+        # Example: docker-compose -f docker-compose.staging.yml up -d
+
+    - name: Run smoke tests
+      run: |
+        echo "Running smoke tests on staging..."
+        # Add smoke test commands here
+        # Example: curl -f http://staging-finrisk.example.com/health
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        pip install -r finrisk/requirements.txt
+
+    - name: Deploy to production
+      run: |
+        echo "Deploying to production environment..."
+        # Add your production deployment commands here
+        # Example: kubectl apply -f k8s/production/
+        # Example: docker-compose -f docker-compose.production.yml up -d
+
+    - name: Run health checks
+      run: |
+        echo "Running health checks on production..."
+        # Add health check commands here
+        # Example: curl -f http://finrisk.example.com/health
+
+    - name: Notify deployment success
+      run: |
+        echo "Production deployment completed successfully!"
+        # Add notification commands here (Slack, email, etc.)
+
+  model-deployment:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: deploy-production
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install MLflow
+      run: |
+        pip install mlflow
+
+    - name: Deploy latest models
+      run: |
+        echo "Deploying latest ML models..."
+        # Add model deployment commands here
+        # Example: mlflow models serve -m models:/finrisk/credit-risk/Production
+        # Example: mlflow models serve -m models:/finrisk/fraud-detection/Production
+
+  monitoring:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [deploy-production, model-deployment]
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install monitoring tools
+      run: |
+        pip install requests prometheus-client
+
+    - name: Start monitoring
+      run: |
+        echo "Starting application monitoring..."
+        # Add monitoring setup commands here
+        # Example: Start Prometheus, Grafana, etc.
+
+    - name: Verify monitoring
+      run: |
+        echo "Verifying monitoring systems..."
+        # Add monitoring verification commands here

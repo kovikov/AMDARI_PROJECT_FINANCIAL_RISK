@@ -1,0 +1,135 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:13
+    container_name: finrisk-postgres
+    environment:
+      POSTGRES_DB: finrisk_db
+      POSTGRES_USER: finrisk_user
+      POSTGRES_PASSWORD: finrisk_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U finrisk_user -d finrisk_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:6-alpine
+    container_name: finrisk-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # MLflow Tracking Server
+  mlflow:
+    image: python:3.10-slim
+    container_name: finrisk-mlflow
+    working_dir: /app
+    environment:
+      MLFLOW_TRACKING_URI: sqlite:///mlflow.db
+      MLFLOW_REGISTRY_URI: sqlite:///mlflow.db
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./mlflow.db:/app/mlflow.db
+    command: >
+      bash -c "pip install mlflow &&
+               mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow.db"
+    depends_on:
+      - postgres
+
+  # FinRisk API Server
+  api:
+    build: .
+    container_name: finrisk-api
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: finrisk_db
+      DB_USER: finrisk_user
+      DB_PASSWORD: finrisk_pass
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MLFLOW_REGISTRY_URI: http://mlflow:5000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./mlruns:/app/mlruns
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      mlflow:
+        condition: service_started
+    command: ["uvicorn", "app.api.server:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  # FinRisk Dashboard
+  dashboard:
+    build: .
+    container_name: finrisk-dashboard
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: finrisk_db
+      DB_USER: finrisk_user
+      DB_PASSWORD: finrisk_pass
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MLFLOW_REGISTRY_URI: http://mlflow:5000
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./mlruns:/app/mlruns
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      api:
+        condition: service_started
+    command: ["streamlit", "run", "dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+  # MLflow Dashboard
+  mlflow-dashboard:
+    build: .
+    container_name: finrisk-mlflow-dashboard
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MLFLOW_REGISTRY_URI: http://mlflow:5000
+    ports:
+      - "8502:8501"
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./mlflow.db:/app/mlflow.db
+    depends_on:
+      mlflow:
+        condition: service_started
+    command: ["streamlit", "run", "mlflow_dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  default:
+    name: finrisk-network

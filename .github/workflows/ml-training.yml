@@ -1,0 +1,321 @@
+name: ML Model Training & Deployment
+
+on:
+  schedule:
+    # Run every Sunday at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+    inputs:
+      model_type:
+        description: 'Type of model to train'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+        - all
+        - credit-risk
+        - fraud-detection
+      force_retrain:
+        description: 'Force retrain even if no new data'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  data-validation:
+    runs-on: ubuntu-latest
+    outputs:
+      has_new_data: ${{ steps.check_data.outputs.has_new_data }}
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        pip install -r finrisk/requirements.txt
+
+    - name: Check for new data
+      id: check_data
+      run: |
+        cd finrisk
+        python -c "
+        import os
+        from datetime import datetime, timedelta
+        # Check if data files have been modified in the last week
+        data_files = ['data/seed/customer_profiles.csv', 'data/seed/credit_applications.csv', 'data/seed/transaction_data.csv']
+        has_new_data = False
+        for file in data_files:
+            if os.path.exists(file):
+                mtime = datetime.fromtimestamp(os.path.getmtime(file))
+                if mtime > datetime.now() - timedelta(days=7):
+                    has_new_data = True
+                    break
+        print(f'has_new_data={has_new_data}')
+        " >> $GITHUB_OUTPUT
+
+  train-credit-risk:
+    runs-on: ubuntu-latest
+    needs: data-validation
+    if: |
+      needs.data-validation.outputs.has_new_data == 'true' ||
+      github.event.inputs.model_type == 'credit-risk' ||
+      github.event.inputs.model_type == 'all' ||
+      github.event.inputs.force_retrain == 'true'
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        pip install -r finrisk/requirements.txt
+
+    - name: Set up MLflow
+      run: |
+        cd finrisk
+        export MLFLOW_TRACKING_URI=sqlite:///mlflow.db
+        export MLFLOW_REGISTRY_URI=sqlite:///mlflow.db
+
+    - name: Train credit risk models
+      run: |
+        cd finrisk
+        python scripts/train_credit_models.py --model-type all
+
+    - name: Evaluate model performance
+      run: |
+        cd finrisk
+        python -c "
+        import mlflow
+        import json
+        from datetime import datetime
+        
+        # Get latest experiment
+        experiment = mlflow.get_experiment_by_name('finrisk-experiments')
+        if experiment:
+            runs = mlflow.search_runs(experiment_ids=[experiment.experiment_id], max_results=5)
+            if not runs.empty:
+                latest_run = runs.iloc[0]
+                metrics = latest_run.to_dict()
+                
+                # Save metrics for review
+                with open('credit_risk_metrics.json', 'w') as f:
+                    json.dump(metrics, f, indent=2)
+                
+                print('Latest credit risk model metrics:')
+                print(f'ROC AUC: {metrics.get(\"metrics.roc_auc\", \"N/A\")}')
+                print(f'Gini: {metrics.get(\"metrics.gini\", \"N/A\")}')
+        "
+
+    - name: Upload model artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: credit-risk-models
+        path: |
+          finrisk/mlruns/
+          finrisk/credit_risk_metrics.json
+
+  train-fraud-detection:
+    runs-on: ubuntu-latest
+    needs: data-validation
+    if: |
+      needs.data-validation.outputs.has_new_data == 'true' ||
+      github.event.inputs.model_type == 'fraud-detection' ||
+      github.event.inputs.model_type == 'all' ||
+      github.event.inputs.force_retrain == 'true'
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        pip install -r finrisk/requirements.txt
+
+    - name: Set up MLflow
+      run: |
+        cd finrisk
+        export MLFLOW_TRACKING_URI=sqlite:///mlflow.db
+        export MLFLOW_REGISTRY_URI=sqlite:///mlflow.db
+
+    - name: Train fraud detection models
+      run: |
+        cd finrisk
+        python -c "
+        from app.models.fraud_detection_trainer import FraudDetectionTrainer
+        from app.infra.db import get_db_session
+        
+        trainer = FraudDetectionTrainer()
+        trainer.train_all_models()
+        "
+
+    - name: Evaluate fraud detection performance
+      run: |
+        cd finrisk
+        python -c "
+        import mlflow
+        import json
+        
+        # Get latest fraud detection experiment
+        experiment = mlflow.get_experiment_by_name('finrisk-experiments')
+        if experiment:
+            runs = mlflow.search_runs(experiment_ids=[experiment.experiment_id], max_results=5)
+            if not runs.empty:
+                latest_run = runs.iloc[0]
+                metrics = latest_run.to_dict()
+                
+                # Save metrics for review
+                with open('fraud_detection_metrics.json', 'w') as f:
+                    json.dump(metrics, f, indent=2)
+                
+                print('Latest fraud detection model metrics:')
+                print(f'Precision at K: {metrics.get(\"metrics.precision_at_k\", \"N/A\")}')
+                print(f'Detection Rate: {metrics.get(\"metrics.detection_rate\", \"N/A\")}')
+        "
+
+    - name: Upload fraud detection artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: fraud-detection-models
+        path: |
+          finrisk/mlruns/
+          finrisk/fraud_detection_metrics.json
+
+  model-registry:
+    runs-on: ubuntu-latest
+    needs: [train-credit-risk, train-fraud-detection]
+    if: always()
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Install MLflow
+      run: |
+        pip install mlflow
+
+    - name: Download model artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: credit-risk-models
+        path: finrisk/mlruns/
+
+    - name: Download fraud detection artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: fraud-detection-models
+        path: finrisk/mlruns/
+
+    - name: Register models in MLflow
+      run: |
+        cd finrisk
+        export MLFLOW_TRACKING_URI=sqlite:///mlflow.db
+        export MLFLOW_REGISTRY_URI=sqlite:///mlflow.db
+        
+        # Register credit risk models
+        python -c "
+        import mlflow
+        from mlflow.tracking import MlflowClient
+        
+        client = MlflowClient()
+        
+        # Find and register the best credit risk model
+        experiment = mlflow.get_experiment_by_name('finrisk-experiments')
+        if experiment:
+            runs = mlflow.search_runs(
+                experiment_ids=[experiment.experiment_id],
+                filter_string='tags.model_type = \"credit_risk\"',
+                order_by=['metrics.roc_auc DESC'],
+                max_results=1
+            )
+            if not runs.empty:
+                best_run = runs.iloc[0]
+                model_uri = f'runs:/{best_run.run_id}/model'
+                client.create_model_version(
+                    name='credit-risk-model',
+                    source=model_uri,
+                    run_id=best_run.run_id
+                )
+                print(f'Registered credit risk model: {best_run.run_id}')
+        "
+        
+        # Register fraud detection models
+        python -c "
+        import mlflow
+        from mlflow.tracking import MlflowClient
+        
+        client = MlflowClient()
+        
+        # Find and register the best fraud detection model
+        experiment = mlflow.get_experiment_by_name('finrisk-experiments')
+        if experiment:
+            runs = mlflow.search_runs(
+                experiment_ids=[experiment.experiment_id],
+                filter_string='tags.model_type = \"fraud_detection\"',
+                order_by=['metrics.precision_at_k DESC'],
+                max_results=1
+            )
+            if not runs.empty:
+                best_run = runs.iloc[0]
+                model_uri = f'runs:/{best_run.run_id}/model'
+                client.create_model_version(
+                    name='fraud-detection-model',
+                    source=model_uri,
+                    run_id=best_run.run_id
+                )
+                print(f'Registered fraud detection model: {best_run.run_id}')
+        "
+
+    - name: Generate training report
+      run: |
+        cd finrisk
+        python -c "
+        import json
+        from datetime import datetime
+        
+        report = {
+            'training_date': datetime.now().isoformat(),
+            'models_trained': {
+                'credit_risk': True,
+                'fraud_detection': True
+            },
+            'status': 'completed'
+        }
+        
+        with open('training_report.json', 'w') as f:
+            json.dump(report, f, indent=2)
+        "
+
+    - name: Upload training report
+      uses: actions/upload-artifact@v3
+      with:
+        name: training-report
+        path: finrisk/training_report.json
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: [train-credit-risk, train-fraud-detection, model-registry]
+    if: always()
+    
+    steps:
+    - name: Notify training completion
+      run: |
+        echo "ML model training pipeline completed!"
+        echo "Check the artifacts for model performance metrics and training reports."
+        # Add notification commands here (Slack, email, etc.)
